@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> Vie Day 💖</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Poppins, sans-serif;
+    background: linear-gradient(to bottom, #ffd6e8, #ffe6f2, #ffcce1);
+    min-height: 100vh;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Floating flowers behind everything */
+  #flowers {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0; /* send flowers to the back */
+  }
+
+  .flower {
+    position: absolute;
+    font-size: 2rem;
+    opacity: .9;
+    animation: float 10s linear infinite;
+  }
+
+  /* Cards and letter should be above the flowers */
+  .card, .letter {
+    position: relative;
+    z-index: 2;
+    background: rgba(255,255,255,0.8);
+    border-radius: 25px;
+    border: 2px solid #ffc6d9;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 400px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    animation: fadeIn 1s;
+  }
+
+  h1 {
+    color: #e75480;
+    font-size: 2.5rem;
+    margin-bottom: .5rem;
+    animation: bounce 1.5s infinite;
+  }
+
+  p {
+    color: #444;
+    line-height: 1.6;
+  }
+
+  .button {
+    background: #ff8fab;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: .3s;
+  }
+
+  .button:hover {
+    background: #ff7096;
+    transform: scale(1.05);
+  }
+
+  .bouquet {
+    width: 400px;
+    margin-bottom: 2rem;
+    border-radius: 20px;
+    animation: floatBouquet 3s ease-in-out infinite;
+    position: relative;
+    z-index: 1;
+  }
+
+  @keyframes bounce {
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-8px);}
+  }
+
+  @keyframes float {
+    0%{transform:translateY(110vh) rotate(0);}
+    100%{transform:translateY(-10vh) rotate(360deg);}
+  }
+
+  @keyframes floatBouquet {
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-6px);}
+  }
+
+  @keyframes fadeIn {
+    from{opacity:0;transform:translateY(10px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+
+  #letterPage { display:none; }
+</style>
+</head>
+<body>
+
+<!-- Floating Flowers -->
+<div id="flowers"></div>
+
+<!-- Main Page -->
+<div id="mainPage">
+  <div class="card">
+    <h1>Gr8tings</h1>
+    <p>short message</p>
+    <button class="button" onclick="showLetter()">💌 Read Letter</button>
+  </div>
+
+  <img src="https://i.pinimg.com/736x/b5/52/e3/b552e37d4864108a86d9096630f6fa4d.jpg" 
+  alt="Bouquet" class="bouquet">
+</div>
+
+<!-- Letter Page -->
+<div class="letter" id="letterPage">
+  <h1>💌 Letter</h1>
+  <p style="text-align:left;">
+    Intro<br><br>
+    1st message<br><br>
+    2nd message<br><br>
+    betlog<br>
+    💕 nacho
+  </p>
+  <button class="button" onclick="goBack()">⬅ Back</button>
+</div>
+
+<!-- Background Music -->
+<audio id="bg" src="Strawberries.mp3" preload="auto" loop></audio>
+
+<script>
+  // Floating flowers
+  const flowerContainer = document.getElementById("flowers");
+  const flowers = ["🌸","🌷","🌼","💐","🌺"];
+
+  for(let i=0;i<20;i++){
+    const f = document.createElement("div");
+    f.classList.add("flower");
+    f.textContent = flowers[Math.floor(Math.random()*flowers.length)];
+    f.style.left = Math.random()*100 + "vw";
+    f.style.animationDuration = 8 + Math.random()*7 + "s";
+    f.style.fontSize = 1.5 + Math.random()*2 + "rem";
+    flowerContainer.appendChild(f);
+  }
+
+  const mainPage = document.getElementById("mainPage");
+  const letterPage = document.getElementById("letterPage");
+  const body = document.body;
+
+  function showLetter(){
+    mainPage.style.display = "none";
+    letterPage.style.display = "block";
+    body.style.background = "linear-gradient(to bottom right, #ffe4ec, #ffd1dc)";
+  }
+
+  function goBack(){
+    letterPage.style.display = "none";
+    mainPage.style.display = "block";
+    body.style.background = "linear-gradient(to bottom, #ffd6e8, #ffe6f2, #ffcce1)";
+  }
+
+  // Background music autoplay handling
+  const a = document.getElementById('bg');
+  a.play().catch(() => {
+    const start = () => {
+      a.muted = false;
+      a.play().catch(()=>{});
+      window.removeEventListener('pointerdown', start);
+      window.removeEventListener('keydown', start);
+    };
+    window.addEventListener('pointerdown', start, { once: true });
+    window.addEventListener('keydown', start, { once: true });
+  });
+</script>
+
+</body>
+</html>
