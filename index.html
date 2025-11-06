@@ -5,13 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vie Day 💜</title>
 <style>
+  
   body {
     margin: 0;
     font-family: Poppins, sans-serif;
     background: linear-gradient(to bottom, #e5ccff, #f0d9ff, #d9b3ff);
     min-height: 100vh;
     text-align: center;
-    overflow: hidden;
+    overflow: hidden; 
     position: relative;
   }
 
@@ -22,7 +23,7 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
-    z-index: 0; 
+    z-index: 0;
   }
 
   .flower {
@@ -32,7 +33,7 @@
     animation: float 10s linear infinite;
   }
 
-  .card { 
+  .card {
     position: relative;
     z-index: 2;
     background: rgba(255,255,255,0.8);
@@ -43,26 +44,27 @@
     max-width: 400px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     animation: fadeIn 1s;
+  }
 
-  } 
-  
   .letter {
     position: relative;
     z-index: 2;
-    background: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.85);
     border-radius: 25px;
     border: 2px solid #cba3ff;
-    padding: 2rem;
+    padding: 2rem 3rem;
     margin: 2rem auto;
-    max-width: 700px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    max-width: 700px; 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     animation: fadeIn 1s;
   }
-   
+
+  
   #letterPage {
-  display: none;
-  max-height: 100vh;
-  overflow-y: auto;
+    display: none;
+    max-height: 100vh;
+    overflow-y: auto;
+    padding-bottom: 2rem;
   }
 
   h1 {
@@ -103,26 +105,26 @@
   }
 
   @keyframes bounce {
-    0%,100%{transform:translateY(0);}
-    50%{transform:translateY(-8px);}
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
   }
 
   @keyframes float {
-    0%{transform:translateY(110vh) rotate(0);}
-    100%{transform:translateY(-10vh) rotate(360deg);}
+    0% { transform: translateY(110vh) rotate(0); }
+    100% { transform: translateY(-10vh) rotate(360deg); }
   }
 
   @keyframes floatBouquet {
-    0%,100%{transform:translateY(0);}
-    50%{transform:translateY(-6px);}
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
   }
 
   @keyframes fadeIn {
-    from{opacity:0;transform:translateY(10px);}
-    to{opacity:1;transform:translateY(0);}
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
-  #letterPage { display:none; }
+
 </style>
 </head>
 <body>
