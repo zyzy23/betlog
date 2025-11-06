@@ -15,7 +15,7 @@
     position: relative;
   }
 
-  /* Floating flowers behind everything */
+ 
   #flowers {
     position: fixed;
     top: 0;
@@ -23,7 +23,7 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
-    z-index: 0; /* send flowers to the back */
+    z-index: 0; 
   }
 
   .flower {
@@ -33,7 +33,7 @@
     animation: float 10s linear infinite;
   }
 
-  /* Cards and letter should be above the flowers */
+  
   .card, .letter {
     position: relative;
     z-index: 2;
@@ -109,10 +109,10 @@
 </head>
 <body>
 
-<!-- Floating Flowers -->
+
 <div id="flowers"></div>
 
-<!-- Main Page -->
+
 <div id="mainPage">
   <div class="card">
     <h1>Gr8tings</h1>
@@ -124,7 +124,7 @@
   alt="Bouquet" class="bouquet">
 </div>
 
-<!-- Letter Page -->
+
 <div class="letter" id="letterPage">
   <h1>💌 Letter</h1>
   <p style="text-align:left;">
@@ -137,11 +137,11 @@
   <button class="button" onclick="goBack()">⬅ Back</button>
 </div>
 
-<!-- Background Music -->
+
 <audio id="bg" src="Strawberries.mp3" preload="auto" loop></audio>
 
 <script>
-  // Floating flowers
+  
   const flowerContainer = document.getElementById("flowers");
   const flowers = ["🌸","🌷","🌼","💐","🌺"];
 
@@ -171,7 +171,7 @@
     body.style.background = "linear-gradient(to bottom, #ffd6e8, #ffe6f2, #ffcce1)";
   }
 
-  // Background music autoplay handling
+  
   const a = document.getElementById('bg');
   a.play().catch(() => {
     const start = () => {
