@@ -7,44 +7,86 @@
 <style>
   body {
     margin: 0;
-    font-family: Poppins, sans-serif;
-    background: linear-gradient(to bottom, #e5ccff, #f0d9ff, #d9b3ff);
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(120deg, #e8ccff, #f0d9ff, #d7b3ff);
+    background-size: 200% 200%;
     min-height: 100vh;
-    text-align: center;
-    overflow-x: hidden; 
+    overflow-x: hidden;
     overflow-y: auto;
+    text-align: center;
+    animation: aurora 12s ease-in-out infinite;
     position: relative;
   }
 
-  #flowers {
+  #hearts, #stars {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     overflow: hidden;
     z-index: 0;
+    pointer-events: none;
   }
 
-  .flower {
+  .heart {
     position: absolute;
-    font-size: 2rem;
-    opacity: .9;
-    animation: float 10s linear infinite;
+    width: 12px;
+    height: 12px;
+    background: rgba(255, 182, 193, 0.8);
+    transform: rotate(45deg);
+    border-radius: 50% 50% 0 0;
+    animation: drift 10s linear infinite;
+    box-shadow: 0 0 8px rgba(255, 192, 203, 0.6);
+  }
+  .heart::before, .heart::after {
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .heart::before { top: -6px; left: 0; }
+  .heart::after { top: 0; left: -6px; }
+
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0;
+    animation: twinkle 6s infinite ease-in-out;
+    box-shadow: 0 0 8px white, 0 0 12px #d4aaff;
+  }
+
+  @keyframes aurora {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  @keyframes drift {
+    0% { transform: translateY(110vh) rotate(45deg) scale(1); opacity: 0; }
+    10% { opacity: 0.7; }
+    50% { opacity: 0.9; }
+    100% { transform: translateY(-10vh) rotate(45deg) scale(1.3); opacity: 0; }
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0; transform: scale(0.8); }
+    50% { opacity: 0.8; transform: scale(1.1); }
   }
 
   .card {
     position: relative;
     z-index: 2;
-    background: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.75);
     border-radius: 25px;
-    border: 2px solid #cba3ff;
-    padding: 2rem;
-    margin: 2rem auto;
+    border: 2px solid rgba(195,163,255,0.6);
+    padding: 2rem 3rem;
+    margin: 5rem auto 2rem;
     max-width: 400px;
-    width: 90%;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    animation: fadeIn 1s;
+    box-shadow: 0 0 30px rgba(182, 143, 255, 0.3), inset 0 0 20px rgba(255,255,255,0.3);
+    backdrop-filter: blur(8px);
+    animation: fadeIn 1.2s ease;
   }
 
   .letter {
@@ -52,154 +94,167 @@
     z-index: 2;
     background: rgba(255,255,255,0.85);
     border-radius: 25px;
-    border: 2px solid #cba3ff;
-    padding: 2rem 3rem;
-    margin: 2rem auto;
-    max-width: 700px; 
-    width: 90%;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    animation: fadeIn 1s;
-  }
-
-  #letterPage {
-    display: none;
-    min-height: 100vh;
-    overflow-y: auto;
-    padding-bottom: 2rem;
+    border: 2px solid rgba(195,163,255,0.6);
+    padding: 3rem 4rem;
+    margin: 3rem auto;
+    max-width: 700px;
+    box-shadow: 0 0 40px rgba(182, 143, 255, 0.35), inset 0 0 25px rgba(255,255,255,0.4);
+    backdrop-filter: blur(10px);
+    animation: fadeIn 1.2s ease;
   }
 
   h1 {
     color: #a35cff;
-    font-size: 2.5rem;
-    margin-bottom: .5rem;
-    animation: bounce 1.5s infinite;
+    font-size: 2.4rem;
+    margin-bottom: .8rem;
+    background: linear-gradient(90deg, #a35cff, #d58fff, #b47bff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s linear infinite;
   }
 
   p {
-    color: #444;
-    line-height: 1.6;
+    color: #4a4a4a;
+    line-height: 1.8;
+    font-size: 1.05rem;
   }
 
   .button {
-    background: #b47bff;
+    background: linear-gradient(90deg, #b47bff, #9b5de5);
     color: white;
-    padding: 10px 25px;
+    padding: 12px 30px;
     border-radius: 30px;
     border: none;
     cursor: pointer;
     font-weight: 600;
-    transition: .3s;
+    font-size: 1rem;
+    transition: all 0.4s ease;
+    box-shadow: 0 0 15px rgba(155,93,229,0.4);
   }
 
   .button:hover {
-    background: #9b5de5;
-    transform: scale(1.05);
+    background: linear-gradient(90deg, #9b5de5, #b47bff);
+    transform: scale(1.08);
+    box-shadow: 0 0 25px rgba(155,93,229,0.7);
   }
 
   .bouquet {
-    width: 400px;
+    width: 380px;
     max-width: 90%;
     margin-bottom: 2rem;
     border-radius: 20px;
-    animation: floatBouquet 3s ease-in-out infinite;
-    position: relative;
-    z-index: 1;
+    animation: floatBouquet 4s ease-in-out infinite;
+    box-shadow: 0 0 20px rgba(192,136,255,0.4);
   }
 
-  @keyframes bounce {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
-
-  @keyframes float {
-    0% { transform: translateY(110vh) rotate(0); }
-    100% { transform: translateY(-10vh) rotate(360deg); }
+  @keyframes shimmer {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
   }
 
   @keyframes floatBouquet {
     0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
+    50% { transform: translateY(-8px); }
   }
 
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
+    from { opacity: 0; transform: translateY(15px); }
     to { opacity: 1; transform: translateY(0); }
   }
 </style>
 </head>
 <body>
 
-<div id="flowers"></div>
+<div id="stars"></div>
+<div id="hearts"></div>
 
 <div id="mainPage">
   <div class="card">
     <h1>Happy Vie Day 💜</h1>
-    <p>Some petals, some words, and lots of love from your favorite chaos :> </p>
-    <button class="button" onclick="showLetter()">💌 Read Letter</button>
+    <p>Some petals, some words, and lots of love from your favorite chaos :></p>
+    <button class="button" onclick="showLetter()">Read Letter</button>
   </div>
 
   <img src="https://i.pinimg.com/736x/c4/79/eb/c479eb5ff305db9f5194c2261793617f.jpg" 
   alt="Bouquet" class="bouquet">
 </div>
 
-<div class="letter" id="letterPage">
-  <h1>💌 Letter</h1>
-  <p style="text-align:left;">
-    Hi Vie! 💕<br><br>
+<div class="letter" id="letterPage" style="display:none;">
+  <h1>💌 A Letter for You</h1>
+  <p style="text-align:justify;">
+    Hi Vie!<br><br>
     One of the reasons I’m thankful for 2025 is because it gave me the chance to meet someone like you. From the moment we met, I already knew you were someone special — someone with a genuine heart and a soul that brings comfort to everyone around you. I’m honored to be part of your life and to witness you grow and keep becoming a better person. You’ve inspired me in ways you probably don’t even realize.<br><br>
-    I just want you to know that being around you gives me a kind of calm I don’t often feel anywhere else. You have that quiet warmth that makes everything feel lighter. Thank you for being friends with me despite my anger issues haha — and of course, for simply being you. May your days always be filled with gentle peace, genuine laughter, and the kind of love that feels like home (syempre ako na yan, eme HAHAHAHA).<br><br>
+    I just want you to know that being around you gives me a kind of calm I don’t often feel anywhere else. You have that quiet warmth that makes everything feel lighter. Thank you for being friends with me despite my anger issues haha — and of course, for simply being you. May your days always be filled with gentle peace, genuine laughter, and the kind of love that feels like home. (syempre ako na yan, eme HAHAHAHA)<br><br>
     I’m so proud of how far you’ve come, and I’ll always be cheering for you. Just know that I’ll always be here in whatever way you need me. I’ll always cherish our friendship — and most of all, you. You deserve all the good things this world has to offer. You’ve come so far, and you’re doing so well — even if you don’t always see it. Never forget how much light you bring into the lives of the people around you (especially me 😜). Here’s to more memories, more laughter, and quiet moments that feel like home.<br><br>
-    <b>Happy birthday once again!</b> 💜<br><br>
+    <b>Happy birthday once again! </b> 💜<br><br>
     Your baby 😝,<br>
     Nacho tae
   </p>
-  <button class="button" onclick="goBack()">⬅ Back</button>
+  <button class="button" onclick="goBack()">Back</button>
 </div>
 
-<audio id="bg" src="Strawberries.mp3" preload="auto" loop></audio>
+<audio id="bg" src="Strawberries.mp3" preload="auto" loop autoplay></audio>
 
 <script>
-  const flowerContainer = document.getElementById("flowers");
-  const flowers = ["💜","🌸","🌷","💐","🌺"];
+  
+  const stars = document.getElementById("stars");
+  for (let i = 0; i < 25; i++) {
+    const s = document.createElement("div");
+    s.classList.add("star");
+    s.style.width = s.style.height = Math.random() * 3 + "px";
+    s.style.left = Math.random() * 100 + "vw";
+    s.style.top = Math.random() * 100 + "vh";
+    s.style.animationDelay = Math.random() * 5 + "s";
+    stars.appendChild(s);
+  }
 
-  for(let i=0;i<20;i++){
-    const f = document.createElement("div");
-    f.classList.add("flower");
-    f.textContent = flowers[Math.floor(Math.random()*flowers.length)];
-    f.style.left = Math.random()*100 + "vw";
-    f.style.animationDuration = 8 + Math.random()*7 + "s";
-    f.style.fontSize = 1.5 + Math.random()*2 + "rem";
-    flowerContainer.appendChild(f);
+  
+  const hearts = document.getElementById("hearts");
+  for (let i = 0; i < 15; i++) {
+    const h = document.createElement("div");
+    h.classList.add("heart");
+    h.style.left = Math.random() * 100 + "vw";
+    h.style.animationDuration = 8 + Math.random() * 6 + "s";
+    h.style.animationDelay = Math.random() * 5 + "s";
+    h.style.opacity = Math.random() * 0.6 + 0.4;
+    hearts.appendChild(h);
   }
 
   const mainPage = document.getElementById("mainPage");
   const letterPage = document.getElementById("letterPage");
   const body = document.body;
 
-  function showLetter(){
-    mainPage.style.display = "none";
-    letterPage.style.display = "block";
-    body.style.background = "linear-gradient(to bottom right, #e6ccff, #d1b3ff)";
-    window.scrollTo(0, 0); 
+  function showLetter() {
+    mainPage.style.opacity = "0";
+    setTimeout(() => {
+      mainPage.style.display = "none";
+      letterPage.style.display = "block";
+      body.style.background = "linear-gradient(120deg, #e6ccff, #d1b3ff, #c29fff)";
+      window.scrollTo(0, 0);
+      letterPage.style.opacity = "1";
+    }, 400);
   }
 
-  function goBack(){
-    letterPage.style.display = "none";
-    mainPage.style.display = "block";
-    body.style.background = "linear-gradient(to bottom, #e5ccff, #f0d9ff, #d9b3ff)";
-    window.scrollTo(0, 0);
+  function goBack() {
+    letterPage.style.opacity = "0";
+    setTimeout(() => {
+      letterPage.style.display = "none";
+      mainPage.style.display = "block";
+      body.style.background = "linear-gradient(120deg, #e8ccff, #f0d9ff, #d7b3ff)";
+      window.scrollTo(0, 0);
+      mainPage.style.opacity = "1";
+    }, 400);
   }
 
-  const a = document.getElementById('bg');
-  a.play().catch(() => {
-    const start = () => {
-      a.muted = false;
-      a.play().catch(()=>{});
-      window.removeEventListener('pointerdown', start);
-      window.removeEventListener('keydown', start);
+  
+  const bg = document.getElementById('bg');
+  window.addEventListener("load", () => {
+    const tryPlay = () => {
+      bg.play().catch(() => {
+        setTimeout(tryPlay, 2000);
+      });
     };
-    window.addEventListener('pointerdown', start, { once: true });
-    window.addEventListener('keydown', start, { once: true });
+    tryPlay();
   });
 </script>
 
