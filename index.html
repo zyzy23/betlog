@@ -83,7 +83,7 @@
     border: 2px solid rgba(195,163,255,0.6);
     padding: 2rem 3rem;
     margin: 5rem auto 2rem;
-    max-width: 400px;
+    max-width: 450px;
     box-shadow: 0 0 30px rgba(182, 143, 255, 0.3), inset 0 0 20px rgba(255,255,255,0.3);
     backdrop-filter: blur(8px);
     animation: fadeIn 1.2s ease;
@@ -97,7 +97,7 @@
     border: 2px solid rgba(195,163,255,0.6);
     padding: 3rem 4rem;
     margin: 3rem auto;
-    max-width: 700px;
+    max-width: 800px;
     box-shadow: 0 0 40px rgba(182, 143, 255, 0.35), inset 0 0 25px rgba(255,255,255,0.4);
     backdrop-filter: blur(10px);
     animation: fadeIn 1.2s ease;
@@ -181,14 +181,15 @@
 
 <div class="letter" id="letterPage" style="display:none;">
   <h1>💌 A Letter for You</h1>
-  <p style="text-align:justify;">
+  <p style="text-align:left;">
     Hi Vie!<br><br>
-    One of the reasons I’m thankful for 2025 is because it gave me the chance to meet someone like you. From the moment we met, I already knew you were someone special — someone with a genuine heart and a soul that brings comfort to everyone around you. I’m honored to be part of your life and to witness you grow and keep becoming a better person. You’ve inspired me in ways you probably don’t even realize.<br><br>
-    I just want you to know that being around you gives me a kind of calm I don’t often feel anywhere else. You have that quiet warmth that makes everything feel lighter. Thank you for being friends with me despite my anger issues haha — and of course, for simply being you. May your days always be filled with gentle peace, genuine laughter, and the kind of love that feels like home. (syempre ako na yan, eme HAHAHAHA)<br><br>
-    I’m so proud of how far you’ve come, and I’ll always be cheering for you. Just know that I’ll always be here in whatever way you need me. I’ll always cherish our friendship — and most of all, you. You deserve all the good things this world has to offer. You’ve come so far, and you’re doing so well — even if you don’t always see it. Never forget how much light you bring into the lives of the people around you (especially me 😜). Here’s to more memories, more laughter, and quiet moments that feel like home.<br><br>
-    <b>Happy birthday once again! </b> 💜<br><br>
-    Your baby 😝,<br>
-    Nacho tae
+    One of the reasons I’m thankful for 2025 is because it gave me the chance to meet someone like you.
+    You’ve been a light — calm, warm, and soft — in the quiet corners of my days.<br><br>
+    I hope your heart feels how much love the world gives you today.  
+    You deserve gentle things, laughter that lingers, and people who stay.<br><br>
+    Happy birthday once again 💜<br><br>
+    Yours,<br>
+    Your favorite chaos — Nacho tae
   </p>
   <button class="button" onclick="goBack()">Back</button>
 </div>
@@ -196,7 +197,7 @@
 <audio id="bg" src="Strawberries.mp3" preload="auto" loop autoplay></audio>
 
 <script>
-  
+  // dreamy stars
   const stars = document.getElementById("stars");
   for (let i = 0; i < 25; i++) {
     const s = document.createElement("div");
@@ -208,7 +209,7 @@
     stars.appendChild(s);
   }
 
-  
+  // floating hearts
   const hearts = document.getElementById("hearts");
   for (let i = 0; i < 15; i++) {
     const h = document.createElement("div");
@@ -246,7 +247,7 @@
     }, 400);
   }
 
-  
+  // background music autoplay with gentle fallback
   const bg = document.getElementById('bg');
   window.addEventListener("load", () => {
     const tryPlay = () => {
