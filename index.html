@@ -5,146 +5,102 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>V</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
+
   body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(120deg, #e8ccff, #f0d9ff, #d7b3ff);
+    background: linear-gradient(120deg, #c9b2ff, #b49aff, #d2b7ff);
     background-size: 200% 200%;
+    animation: backgroundShift 20s ease-in-out infinite;
     min-height: 100vh;
     overflow-x: hidden;
     overflow-y: auto;
     text-align: center;
-    animation: aurora 12s ease-in-out infinite;
+    color: #3f2a63;
     position: relative;
   }
 
-  #hearts, #stars {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    overflow: hidden;
-    z-index: 0;
-    pointer-events: none;
-  }
-
-  .heart {
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    background: rgba(255, 182, 193, 0.8);
-    transform: rotate(45deg);
-    border-radius: 50% 50% 0 0;
-    animation: drift 10s linear infinite;
-    box-shadow: 0 0 8px rgba(255, 192, 203, 0.6);
-  }
-  .heart::before, .heart::after {
-    content: "";
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    background: inherit;
-    border-radius: 50%;
-  }
-  .heart::before { top: -6px; left: 0; }
-  .heart::after { top: 0; left: -6px; }
-
-  .star {
-    position: absolute;
-    background: white;
-    border-radius: 50%;
-    opacity: 0;
-    animation: twinkle 6s infinite ease-in-out;
-    box-shadow: 0 0 8px white, 0 0 12px #d4aaff;
-  }
-
-  @keyframes aurora {
+  @keyframes backgroundShift {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
   }
 
-  @keyframes drift {
-    0% { transform: translateY(110vh) rotate(45deg) scale(1); opacity: 0; }
-    10% { opacity: 0.7; }
-    50% { opacity: 0.9; }
-    100% { transform: translateY(-10vh) rotate(45deg) scale(1.3); opacity: 0; }
+  
+  .mist {
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2), transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(200,170,255,0.25), transparent 50%);
+    filter: blur(80px);
+    animation: mistFlow 30s ease-in-out infinite alternate;
+    z-index: 0;
+  }
+  @keyframes mistFlow {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-5%, -3%) scale(1.1); }
+    100% { transform: translate(3%, 5%) scale(1.05); }
   }
 
-  @keyframes twinkle {
-    0%, 100% { opacity: 0; transform: scale(0.8); }
-    50% { opacity: 0.8; transform: scale(1.1); }
+  
+  .sparkles {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .shape {
+    position: absolute;
+    font-size: 26px;
+    color: #d7baff;
+    text-shadow: 0 0 12px rgba(215,186,255,0.8);
+    opacity: 0.85;
+    animation: drift 18s ease-in-out infinite;
+  }
+  @keyframes drift {
+    0% { transform: translateY(0) scale(1); opacity: 0.9; }
+    50% { transform: translateY(-40px) scale(1.05); opacity: 1; }
+    100% { transform: translateY(0) scale(1); opacity: 0.9; }
+  }
+
+  .card, .letter {
+    position: relative;
+    z-index: 2;
+    backdrop-filter: blur(20px);
+    background: rgba(255,255,255,0.3);
+    border-radius: 30px;
+    border: 1px solid rgba(255,255,255,0.3);
+    box-shadow: 0 0 40px rgba(170,130,255,0.25);
+    transition: all 0.5s ease;
+    animation: fadeIn 1.2s ease;
   }
 
   .card {
-    position: relative;
-    z-index: 2;
-    background: rgba(255,255,255,0.75);
-    border-radius: 25px;
-    border: 2px solid rgba(195,163,255,0.6);
-    padding: 2rem 3rem;
-    margin: 5rem auto 2rem;
+    padding: 2.8rem 3rem;
+    margin: 8rem auto 3rem;
     max-width: 400px;
-    box-shadow: 0 0 30px rgba(182, 143, 255, 0.3), inset 0 0 20px rgba(255,255,255,0.3);
-    backdrop-filter: blur(8px);
-    animation: fadeIn 1.2s ease;
   }
 
   .letter {
-    position: relative;
-    z-index: 2;
-    background: rgba(255,255,255,0.85);
-    border-radius: 25px;
-    border: 2px solid rgba(195,163,255,0.6);
-    padding: 3rem 4rem;
-    margin: 3rem auto;
+    padding: 4rem 4.5rem;
+    margin: 5rem auto;
     max-width: 700px;
-    box-shadow: 0 0 40px rgba(182, 143, 255, 0.35), inset 0 0 25px rgba(255,255,255,0.4);
-    backdrop-filter: blur(10px);
-    animation: fadeIn 1.2s ease;
+    display: none;
   }
 
   h1 {
-    color: #a35cff;
-    font-size: 2.4rem;
-    margin-bottom: .8rem;
-    background: linear-gradient(90deg, #a35cff, #d58fff, #b47bff);
+    font-size: 2.5rem;
+    background: linear-gradient(90deg, #a463ff, #c89fff, #d8b9ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: shimmer 3s linear infinite;
-  }
-
-  p {
-    color: #4a4a4a;
-    line-height: 1.8;
-    font-size: 1.05rem;
-  }
-
-  .button {
-    background: linear-gradient(90deg, #b47bff, #9b5de5);
-    color: white;
-    padding: 12px 30px;
-    border-radius: 30px;
-    border: none;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: all 0.4s ease;
-    box-shadow: 0 0 15px rgba(155,93,229,0.4);
-  }
-
-  .button:hover {
-    background: linear-gradient(90deg, #9b5de5, #b47bff);
-    transform: scale(1.08);
-    box-shadow: 0 0 25px rgba(155,93,229,0.7);
-  }
-
-  .bouquet {
-    width: 380px;
-    max-width: 90%;
-    margin-bottom: 2rem;
-    border-radius: 20px;
-    animation: floatBouquet 4s ease-in-out infinite;
-    box-shadow: 0 0 20px rgba(192,136,255,0.4);
+    animation: shimmer 6s linear infinite;
+    margin-bottom: 1rem;
   }
 
   @keyframes shimmer {
@@ -152,9 +108,44 @@
     100% { background-position: 100% 50%; }
   }
 
-  @keyframes floatBouquet {
+  p {
+    color: #3f2a63;
+    line-height: 1.9;
+    font-size: 1.05rem;
+    letter-spacing: 0.3px;
+  }
+
+  .button {
+    background: linear-gradient(90deg, #b47bff, #9b5de5);
+    color: white;
+    padding: 12px 34px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.4s ease;
+    margin-top: 1.2rem;
+    box-shadow: 0 0 18px rgba(155,93,229,0.45);
+  }
+
+  .button:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 30px rgba(155,93,229,0.7);
+  }
+
+  .bouquet {
+    width: 340px;
+    max-width: 90%;
+    margin-bottom: 3rem;
+    border-radius: 30px;
+    box-shadow: 0 0 25px rgba(200,150,255,0.4);
+    animation: floatImage 6s ease-in-out infinite;
+  }
+
+  @keyframes floatImage {
     0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
+    50% { transform: translateY(-12px); }
   }
 
   @keyframes fadeIn {
@@ -165,22 +156,21 @@
 </head>
 <body>
 
-<div id="stars"></div>
-<div id="hearts"></div>
+<div class="mist"></div>
+<div class="sparkles" id="sparkles"></div>
 
 <div id="mainPage">
   <div class="card">
     <h1>Happy Vie Day 💜</h1>
-    <p>Some petals, some words, and lots of love from your favorite chaos :></p>
-    <button class="button" onclick="showLetter()">Read Letter</button>
+    <p>Some petals, some words, and lots of love from your favorite chaos :> </p>
+    <button class="button" onclick="showLetter()">Open Letter</button>
   </div>
-
   <img src="https://i.pinimg.com/736x/c4/79/eb/c479eb5ff305db9f5194c2261793617f.jpg" 
   alt="Bouquet" class="bouquet">
 </div>
 
-<div class="letter" id="letterPage" style="display:none;">
-  <h1>💌  Letter </h1>
+<div class="letter" id="letterPage">
+  <h1>💌 Letter</h1>
   <p style="text-align:justify;">
     Hi Vie!<br><br>
     One of the reasons I’m thankful for 2025 is because it gave me the chance to meet someone like you. From the moment we met, I already knew you were someone special — someone with a genuine heart and a soul that brings comfort to everyone around you. I’m honored to be part of your life and to witness you grow and keep becoming a better person. You’ve inspired me in ways you probably don’t even realize.<br><br>
@@ -196,28 +186,20 @@
 <audio id="bg" src="Strawberries.mp3" preload="auto" loop autoplay></audio>
 
 <script>
-  // dreamy stars
-  const stars = document.getElementById("stars");
-  for (let i = 0; i < 25; i++) {
-    const s = document.createElement("div");
-    s.classList.add("star");
-    s.style.width = s.style.height = Math.random() * 3 + "px";
-    s.style.left = Math.random() * 100 + "vw";
-    s.style.top = Math.random() * 100 + "vh";
-    s.style.animationDelay = Math.random() * 5 + "s";
-    stars.appendChild(s);
-  }
-
-  // floating hearts
-  const hearts = document.getElementById("hearts");
-  for (let i = 0; i < 15; i++) {
-    const h = document.createElement("div");
-    h.classList.add("heart");
-    h.style.left = Math.random() * 100 + "vw";
-    h.style.animationDuration = 8 + Math.random() * 6 + "s";
-    h.style.animationDelay = Math.random() * 5 + "s";
-    h.style.opacity = Math.random() * 0.6 + 0.4;
-    hearts.appendChild(h);
+  const sparkles = document.getElementById('sparkles');
+  const shapes = ['★', '♥'];
+  for (let i = 0; i < 24; i++) {
+    const span = document.createElement('span');
+    span.classList.add('shape');
+    span.innerText = shapes[Math.floor(Math.random() * shapes.length)];
+    const x = Math.random() * 100;
+    const y = Math.random() * 40; 
+    if (x < 15 || x > 85 || y < 35) { 
+      span.style.left = x + 'vw';
+      span.style.top = y + 'vh';
+      span.style.animationDelay = Math.random() * 10 + 's';
+      sparkles.appendChild(span);
+    }
   }
 
   const mainPage = document.getElementById("mainPage");
@@ -229,7 +211,7 @@
     setTimeout(() => {
       mainPage.style.display = "none";
       letterPage.style.display = "block";
-      body.style.background = "linear-gradient(120deg, #e6ccff, #d1b3ff, #c29fff)";
+      body.style.background = "linear-gradient(120deg, #bca7ff, #a98fff, #c3a5ff)";
       window.scrollTo(0, 0);
       letterPage.style.opacity = "1";
     }, 400);
@@ -240,19 +222,17 @@
     setTimeout(() => {
       letterPage.style.display = "none";
       mainPage.style.display = "block";
-      body.style.background = "linear-gradient(120deg, #e8ccff, #f0d9ff, #d7b3ff)";
+      body.style.background = "linear-gradient(120deg, #c9b2ff, #b49aff, #d2b7ff)";
       window.scrollTo(0, 0);
       mainPage.style.opacity = "1";
     }, 400);
   }
 
-  // background music autoplay with gentle fallback
+  
   const bg = document.getElementById('bg');
   window.addEventListener("load", () => {
     const tryPlay = () => {
-      bg.play().catch(() => {
-        setTimeout(tryPlay, 2000);
-      });
+      bg.play().catch(() => setTimeout(tryPlay, 2000));
     };
     tryPlay();
   });
