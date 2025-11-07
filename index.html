@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vie Day 💜</title>
 <style>
-  
   body {
     margin: 0;
     font-family: Poppins, sans-serif;
     background: linear-gradient(to bottom, #e5ccff, #f0d9ff, #d9b3ff);
     min-height: 100vh;
     text-align: center;
-    overflow: hidden; 
+    overflow-x: hidden; 
+    overflow-y: auto;
     position: relative;
   }
 
@@ -42,6 +42,7 @@
     padding: 2rem;
     margin: 2rem auto;
     max-width: 400px;
+    width: 90%;
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     animation: fadeIn 1s;
   }
@@ -55,14 +56,14 @@
     padding: 2rem 3rem;
     margin: 2rem auto;
     max-width: 700px; 
+    width: 90%;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     animation: fadeIn 1s;
   }
 
-  
   #letterPage {
     display: none;
-    max-height: 100vh;
+    min-height: 100vh;
     overflow-y: auto;
     padding-bottom: 2rem;
   }
@@ -97,6 +98,7 @@
 
   .bouquet {
     width: 400px;
+    max-width: 90%;
     margin-bottom: 2rem;
     border-radius: 20px;
     animation: floatBouquet 3s ease-in-out infinite;
@@ -123,8 +125,6 @@
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
   }
-
-
 </style>
 </head>
 <body>
@@ -146,9 +146,10 @@
   <h1>💌 Letter</h1>
   <p style="text-align:left;">
     Hi Vie! 💕<br><br>
-    First of all, happy birthday ulit hehe. One of the reasons I’m thankful for 2025 is because it gave me the chance to meet someone like you. When we first met, I already knew you were someone special — someone with a genuine heart and a soul that brings comfort to everyone around you. I’m honored to be part of your life and to witness you grow and continue becoming a better person. You’ve inspired me in ways you probably don’t even realize.<br><br>
-    I just want you to know that being around you gives me a sense of calm I don’t often feel anywhere else. You have that quiet kind of warmth that makes everything feel lighter. Thank you for being friends with me despite my anger issues haha — and of course, for simply being you. May your days always be filled with gentle peace, genuine laughter, and the kind of love that feels like home (syempre ako na ’yan, eme HAHAHAHA).<br><br>
-    I’m so proud of how far you’ve come, and I’ll always be cheering for you. Just know that I’ll always be here for you in whatever way you need me. I’ll always cherish our friendship — and most of all, you. You deserve all the good things this world has to offer. You’ve come so far, and you’re doing so well — even if you don’t always see it. Never forget how much light you bring into the lives of the people around you (especially me 😜). Here’s to more memories, more laughter, and quiet moments that feel like home.<br><br>
+    One of the reasons I’m thankful for 2025 is because it gave me the chance to meet someone like you. From the moment we met, I already knew you were someone special — someone with a genuine heart and a soul that brings comfort to everyone around you. I’m honored to be part of your life and to witness you grow and keep becoming a better person. You’ve inspired me in ways you probably don’t even realize.<br><br>
+    I just want you to know that being around you gives me a kind of calm I don’t often feel anywhere else. You have that quiet warmth that makes everything feel lighter. Thank you for being friends with me despite my anger issues haha — and of course, for simply being you. May your days always be filled with gentle peace, genuine laughter, and the kind of love that feels like home (syempre ako na yan, eme HAHAHAHA).<br><br>
+    I’m so proud of how far you’ve come, and I’ll always be cheering for you. Just know that I’ll always be here in whatever way you need me. I’ll always cherish our friendship — and most of all, you. You deserve all the good things this world has to offer. You’ve come so far, and you’re doing so well — even if you don’t always see it. Never forget how much light you bring into the lives of the people around you (especially me 😜). Here’s to more memories, more laughter, and quiet moments that feel like home.<br><br>
+    <b>Happy birthday once again!</b> 💜<br><br>
     Your baby 😝,<br>
     Nacho tae
   </p>
@@ -179,12 +180,14 @@
     mainPage.style.display = "none";
     letterPage.style.display = "block";
     body.style.background = "linear-gradient(to bottom right, #e6ccff, #d1b3ff)";
+    window.scrollTo(0, 0); 
   }
 
   function goBack(){
     letterPage.style.display = "none";
     mainPage.style.display = "block";
     body.style.background = "linear-gradient(to bottom, #e5ccff, #f0d9ff, #d9b3ff)";
+    window.scrollTo(0, 0);
   }
 
   const a = document.getElementById('bg');
