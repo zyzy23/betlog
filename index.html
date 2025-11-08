@@ -7,16 +7,17 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
 
+  * { scroll-behavior: smooth; }
+
   body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(120deg, #c9b2ff, #b49aff, #d2b7ff);
+    background: linear-gradient(120deg, #bda6ff, #a77bff, #cfa8ff);
+    background-attachment: fixed;
     background-size: 200% 200%;
     animation: backgroundShift 20s ease-in-out infinite;
     min-height: 100vh;
     overflow-x: hidden;
-    overflow-y: auto;
-    text-align: center;
     color: #3f2a63;
     position: relative;
   }
@@ -27,26 +28,27 @@
     100% { background-position: 0% 50%; }
   }
 
-  
+  /* soft mist for depth */
   .mist {
     position: fixed;
     width: 200%;
     height: 200%;
     top: -50%;
     left: -50%;
-    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2), transparent 50%),
-                radial-gradient(circle at 70% 70%, rgba(200,170,255,0.25), transparent 50%);
-    filter: blur(80px);
-    animation: mistFlow 30s ease-in-out infinite alternate;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1), transparent 60%),
+                radial-gradient(circle at 70% 70%, rgba(200,170,255,0.2), transparent 60%);
+    filter: blur(90px);
+    animation: mistFlow 40s ease-in-out infinite alternate;
     z-index: 0;
+    pointer-events: none;
   }
   @keyframes mistFlow {
     0% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(-5%, -3%) scale(1.1); }
-    100% { transform: translate(3%, 5%) scale(1.05); }
+    50% { transform: translate(-4%, -3%) scale(1.05); }
+    100% { transform: translate(3%, 4%) scale(1); }
   }
 
-  
+  /* floating hearts and stars */
   .sparkles {
     position: fixed;
     top: 0; left: 0;
@@ -57,26 +59,26 @@
   }
   .shape {
     position: absolute;
-    font-size: 26px;
-    color: #d7baff;
-    text-shadow: 0 0 12px rgba(215,186,255,0.8);
-    opacity: 0.85;
+    font-size: 30px;
+    color: #c8a4ff;
+    text-shadow: 0 0 12px rgba(200,160,255,0.8);
+    opacity: 0.8;
     animation: drift 18s ease-in-out infinite;
   }
   @keyframes drift {
-    0% { transform: translateY(0) scale(1); opacity: 0.9; }
-    50% { transform: translateY(-40px) scale(1.05); opacity: 1; }
-    100% { transform: translateY(0) scale(1); opacity: 0.9; }
+    0% { transform: translateY(0) scale(1); opacity: 0.8; }
+    50% { transform: translateY(-35px) scale(1.05); opacity: 1; }
+    100% { transform: translateY(0) scale(1); opacity: 0.8; }
   }
 
   .card, .letter {
     position: relative;
     z-index: 2;
-    backdrop-filter: blur(20px);
-    background: rgba(255,255,255,0.3);
+    backdrop-filter: blur(15px);
+    background: rgba(255,255,255,0.2);
     border-radius: 30px;
-    border: 1px solid rgba(255,255,255,0.3);
-    box-shadow: 0 0 40px rgba(170,130,255,0.25);
+    border: 1px solid rgba(255,255,255,0.25);
+    box-shadow: 0 0 35px rgba(160,110,255,0.25);
     transition: all 0.5s ease;
     animation: fadeIn 1.2s ease;
   }
@@ -92,6 +94,7 @@
     margin: 5rem auto;
     max-width: 700px;
     display: none;
+    background: rgba(255,255,255,0.25);
   }
 
   h1 {
@@ -183,22 +186,23 @@
   <button class="button" onclick="goBack()">Back</button>
 </div>
 
-<audio id="bg" src="Strawberries.mp3" preload="auto" loop autoplay></audio>
+<audio id="bg" src="malumanay.mp3" preload="auto" loop autoplay></audio>
 
 <script>
+  
   const sparkles = document.getElementById('sparkles');
   const shapes = ['★', '♥'];
   for (let i = 0; i < 24; i++) {
-    const span = document.createElement('span');
-    span.classList.add('shape');
-    span.innerText = shapes[Math.floor(Math.random() * shapes.length)];
+    const s = document.createElement('span');
+    s.classList.add('shape');
+    s.innerText = shapes[Math.floor(Math.random() * shapes.length)];
     const x = Math.random() * 100;
-    const y = Math.random() * 40; 
-    if (x < 15 || x > 85 || y < 35) { 
-      span.style.left = x + 'vw';
-      span.style.top = y + 'vh';
-      span.style.animationDelay = Math.random() * 10 + 's';
-      sparkles.appendChild(span);
+    const y = Math.random() * 50;
+    if (x < 20 || x > 80 || y < 35) {
+      s.style.left = x + 'vw';
+      s.style.top = y + 'vh';
+      s.style.animationDelay = Math.random() * 12 + 's';
+      sparkles.appendChild(s);
     }
   }
 
@@ -211,9 +215,9 @@
     setTimeout(() => {
       mainPage.style.display = "none";
       letterPage.style.display = "block";
-      body.style.background = "linear-gradient(120deg, #bca7ff, #a98fff, #c3a5ff)";
-      window.scrollTo(0, 0);
-      letterPage.style.opacity = "1";
+      letterPage.style.opacity = "0";
+      setTimeout(() => letterPage.style.opacity = "1", 100);
+      body.style.background = "linear-gradient(120deg, #a58aff, #9068ff, #c29cff)";
     }, 400);
   }
 
@@ -222,9 +226,9 @@
     setTimeout(() => {
       letterPage.style.display = "none";
       mainPage.style.display = "block";
-      body.style.background = "linear-gradient(120deg, #c9b2ff, #b49aff, #d2b7ff)";
-      window.scrollTo(0, 0);
-      mainPage.style.opacity = "1";
+      mainPage.style.opacity = "0";
+      setTimeout(() => mainPage.style.opacity = "1", 100);
+      body.style.background = "linear-gradient(120deg, #bda6ff, #a77bff, #cfa8ff)";
     }, 400);
   }
 
@@ -232,7 +236,7 @@
   const bg = document.getElementById('bg');
   window.addEventListener("load", () => {
     const tryPlay = () => {
-      bg.play().catch(() => setTimeout(tryPlay, 2000));
+      bg.play().catch(() => setTimeout(tryPlay, 1500));
     };
     tryPlay();
   });
