@@ -7,10 +7,15 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
 
+  html, body {
+    scroll-behavior: smooth;
+    background-attachment: fixed;
+  }
+
   body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(120deg, #c9b2ff, #b49aff, #d2b7ff);
+    background: linear-gradient(120deg, #bca7ff, #a98fff, #c3a5ff);
     background-size: 200% 200%;
     animation: backgroundShift 20s ease-in-out infinite;
     min-height: 100vh;
@@ -40,6 +45,7 @@
     animation: mistFlow 30s ease-in-out infinite alternate;
     z-index: 0;
   }
+
   @keyframes mistFlow {
     0% { transform: translate(0, 0) scale(1); }
     50% { transform: translate(-5%, -3%) scale(1.1); }
@@ -57,10 +63,10 @@
   }
   .shape {
     position: absolute;
-    font-size: 26px;
-    color: #d7baff;
-    text-shadow: 0 0 12px rgba(215,186,255,0.8);
-    opacity: 0.85;
+    font-size: 30px;
+    color: #cdb4ff;
+    text-shadow: 0 0 15px rgba(200,170,255,0.8);
+    opacity: 0.9;
     animation: drift 18s ease-in-out infinite;
   }
   @keyframes drift {
@@ -69,6 +75,7 @@
     100% { transform: translateY(0) scale(1); opacity: 0.9; }
   }
 
+  
   .card, .letter {
     position: relative;
     z-index: 2;
@@ -92,13 +99,16 @@
     margin: 5rem auto;
     max-width: 700px;
     display: none;
+    opacity: 0;
   }
 
+  /* Title fix */
   h1 {
     font-size: 2.5rem;
-    background: linear-gradient(90deg, #a463ff, #c89fff, #d8b9ff);
+    background: linear-gradient(90deg, #e8d6ff, #f4e6ff, #d8b9ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(255,255,255,0.6);
     animation: shimmer 6s linear infinite;
     margin-bottom: 1rem;
   }
@@ -115,6 +125,7 @@
     letter-spacing: 0.3px;
   }
 
+  
   .button {
     background: linear-gradient(90deg, #b47bff, #9b5de5);
     color: white;
@@ -134,10 +145,12 @@
     box-shadow: 0 0 30px rgba(155,93,229,0.7);
   }
 
+  
   .bouquet {
     width: 340px;
     max-width: 90%;
-    margin-bottom: 3rem;
+    margin: 2rem auto 3rem;
+    display: block;
     border-radius: 30px;
     box-shadow: 0 0 25px rgba(200,150,255,0.4);
     animation: floatImage 6s ease-in-out infinite;
@@ -186,6 +199,7 @@
 <audio id="bg" src="malumanay.mp3" preload="auto" loop autoplay></audio>
 
 <script>
+  
   const sparkles = document.getElementById('sparkles');
   const shapes = ['★', '♥'];
   for (let i = 0; i < 24; i++) {
@@ -207,25 +221,29 @@
   const body = document.body;
 
   function showLetter() {
+    mainPage.style.transition = "opacity 0.6s ease";
+    letterPage.style.transition = "opacity 0.6s ease";
     mainPage.style.opacity = "0";
     setTimeout(() => {
       mainPage.style.display = "none";
       letterPage.style.display = "block";
-      body.style.background = "linear-gradient(120deg, #bca7ff, #a98fff, #c3a5ff)";
-      window.scrollTo(0, 0);
       letterPage.style.opacity = "1";
-    }, 400);
+      body.style.background = "linear-gradient(120deg, #a78bff, #9272f0, #b493ff)";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 500);
   }
 
   function goBack() {
+    letterPage.style.transition = "opacity 0.6s ease";
+    mainPage.style.transition = "opacity 0.6s ease";
     letterPage.style.opacity = "0";
     setTimeout(() => {
       letterPage.style.display = "none";
       mainPage.style.display = "block";
-      body.style.background = "linear-gradient(120deg, #c9b2ff, #b49aff, #d2b7ff)";
-      window.scrollTo(0, 0);
       mainPage.style.opacity = "1";
-    }, 400);
+      body.style.background = "linear-gradient(120deg, #bca7ff, #a98fff, #c3a5ff)";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 500);
   }
 
   
